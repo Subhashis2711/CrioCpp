@@ -1,0 +1,7 @@
+.vscode/
+.ccls-cache/
+.replit
+Makefile
+replir.nix
+main
+main.o
