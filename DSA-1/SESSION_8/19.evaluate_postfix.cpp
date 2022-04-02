@@ -2,32 +2,37 @@
 using namespace std;
 // TODO: Implement this method
 int postfixExpression(string s)
-{
+{   
+    string token;
     stack<int> st;
 
-    for(char ch: s){
-        if(ch != ' '){
-            if(ch > '0' and ch < '9'){
-                st.push(ch - '0');
-            }else{
+    istringstream ss(s); 
 
-                int x = st.top();
-                st.pop();
+    vector<string> tokens; 
 
-                int y = st.top();
-                st.pop();
+    while (ss >> token) tokens.push_back(token);
 
-                if(ch == '+'){
-                    st.push(y + x);
-                }else if(ch == '-'){
-                    st.push(y - x);
-                }else if(ch == '*'){
-                    st.push(y * x);
-                }else if(ch == '/'){
-                    st.push(y / x);
-                }
+    for(auto ch: tokens){
+
+        if(ch == "+" || ch == "-" || ch == "*" || ch =="/"){
+            int x = st.top();
+            st.pop();
+
+            int y = st.top();
+            st.pop();
+
+            if(ch == "+"){
+                st.push(y + x);
+            }else if(ch == "-"){
+                st.push(y - x);
+            }else if(ch == "*"){
+                st.push(y * x);
+            }else if(ch == "/"){
+                st.push(y / x);
             }
-
+        }else{
+            int num = stoi(ch);
+            st.push(num);
         }
     }
 
