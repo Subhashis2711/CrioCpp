@@ -23,7 +23,23 @@ Sample Output 1
 using namespace std;
 
 int maximumSubarraySumSizeK(vector<int>&arr, int n, int k){
-    
+    int max_sum = 0;
+    int curr_sum = 0;
+    int i;
+    for(i = 0; i < k; i++){
+        curr_sum += arr[i];
+    }
+
+    int end = i;
+    while(end < n){
+        curr_sum += arr[end] - arr[end - k];
+        max_sum = max(curr_sum, max_sum);
+        end++;
+    }
+
+    return max_sum;
+
+
 }
 
 
